@@ -1,0 +1,8 @@
+{
+  "name": "utilizando_yarn",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/rafaelvicio/utilizando_yarn.git",
+  "author": "Rafael Augusto Pacheco Baião Reis <rafaelvicio@icloud.com>",
+  "license": "MIT"
+}
