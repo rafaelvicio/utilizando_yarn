@@ -1,0 +1,51 @@
+<form name="pizzaForm" novalidate>
+
+<div class="breadcrumb">
+  Sabores > Customização > {{pizza.nome}}
+</div>
+
+<div class="fieldset">
+  <label class="label">Nome: </label>
+  <input type="text" ng-model="pizza.nome" name="nome" required/>
+  <button ng-click="nomeAleatorio()">Aleatório</button>
+  <div class="error-message" ng-show="pizzaForm.nome.$dirty && pizzaForm.nome.$invalid">
+    O campo nome é obrigatorio
+  </div>
+</div>
+
+<div class="fieldset">
+  <label class="label">Formato:</label>
+  Redonda <input type="radio" ng-model="pizza.formato" value="Redonda" />
+  Quadrada <input type="radio" ng-model="pizza.formato" value="Quadrada" />
+  <div ng-class="formatoPizza()"></div>
+</div>
+
+<div class="fieldset">
+  <label class="label">Tipo de Venda:</label>
+  Entrega <input type="radio" ng-model="pizza.local" value="Entrega" />
+  Local <input type="radio" ng-model="pizza.local" value="Local" />
+</div>
+
+<div class="fieldset" ng-if="pizza.local === 'Entrega'">
+  <label class="label">Tipo de Venda:</label>
+  <textarea ng-model="pizza.endereco"></textarea>
+</div>
+
+<div class="fieldset">
+  <label class="label">Ingredientes:</label>
+  <input type="text" ng-model="Ingrediente.novo" name="ingrediente" ng-pattern="/[^\d]/g" required/>
+  <button ng-click="Ingrediente.inserir()" ng-disabled="pizzaForm.ingrediente.$invalid">Adicionar</button>
+
+  <ul class="ingredientes">
+    <li ng-repeat="ingrediente in pizza.ingredientes">
+      <span>{{ingrediente}}</span>
+      <button ng-click="Ingrediente.remover($index)">X</button>
+    </li>
+  </ul>
+</div>
+
+<div class="fieldset">
+  <b>Total: </b> {{ precoPizza() | reaisFilter }}
+</div>
+
+</form>
